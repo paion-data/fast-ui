@@ -13,11 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-"use strict";
-
-module.exports = function () {
-  return {
-    historyApiFallback: true,
-    port: 3000,
-  };
-};
+export default function App(): JSX.Element {
+  return (<></>);
+}

@@ -1,9 +1,32 @@
 {
   "name": "react-template",
+  "workspaces": [
+    "./packages/react-template-app"
+  ],
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "description": "React Template with common pre-defined components, such Redux and CI/CD",
   "packageManager": "yarn@3.5.0",
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QubitPi/react-template.git"
+  },
+  "author": "Jiaqi Liu",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/QubitPi/react-template/issues"
+  },
+  "homepage": "https://github.com/QubitPi/react-template#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.4",
@@ -26,9 +49,5 @@
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
   }
 }

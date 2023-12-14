@@ -6906,6 +6906,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-template-app@workspace:packages/react-template-app":
+  version: 0.0.0-use.local
+  resolution: "react-template-app@workspace:packages/react-template-app"
+  languageName: unknown
+  linkType: soft
+
 "react-template@workspace:.":
   version: 0.0.0-use.local
   resolution: "react-template@workspace:."
