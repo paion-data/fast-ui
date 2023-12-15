@@ -1,0 +1,193 @@
+# Copyright Jiaqi Liu
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+name: CI/CD
+
+"on":
+  pull_request:
+  push:
+    branches:
+      - master
+
+env:
+  USER: QubitPi
+  EMAIL: jack20220723@gmail.com
+  NODE_VERSION: 18
+
+jobs:
+  yml-md-style:
+    uses: QubitPi/hashicorp-aws/.github/workflows/yml-and-md-style-checks.yml@master
+
+  code-style:
+    name: Code Style Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: QubitPi/hashicorp-aws/auxiliary/github/actions/ui-code-style@master
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+  unit-tests:
+    name: Unit Tests
+    needs: [yml-md-style, code-style]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: QubitPi/hashicorp-aws/auxiliary/github/actions/ui-unit-test@master
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+  list-e2e-specs:
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    outputs:
+      paths: ${{ steps.list-e2e-specs.outputs.paths }}
+    steps:
+      - name: List Files
+        id: list-e2e-specs
+        uses: mirko-felice/list-files-action@v3.0.5
+        with:
+          repo: ${{ github.repository }}
+          ref: ${{ github.ref }}
+          path: "cypress/e2e"
+          ext: ".ts"
+
+  e2e-tests:
+    name: E2E Tests
+    needs: list-e2e-specs
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        test_spec: ${{ fromJson(needs.list-e2e-specs.outputs.paths) }}
+        start_strategy: ["yarn-start", "serve"]
+        node_version: [18]
+    steps:
+      - uses: QubitPi/hashicorp-aws/auxiliary/github/actions/cypress-e2e@master
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          start-strategy: ${{ matrix.start_strategy }}
+          spec-relative-path: ${{ matrix.test_spec }}
+      # - run: npm exec -- argos upload --token ${{ secrets.ARGOS_TOKEN }} cypress/screenshots
+
+  # documentation-ci-cd:
+  #   name: Test and Deploy Documentation to GitHub Pages
+  #   needs: e2e-tests
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: docs
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
+  #     - name: Install nexusgraph dependencies so that TypeDoc process source files properly
+  #       run: cd ../ && yarn install
+  #       env:
+  #         YARN_ENABLE_IMMUTABLE_INSTALLS: false
+  #     - name: Install doc dependencies
+  #       run: yarn install
+  #       env:
+  #         YARN_ENABLE_IMMUTABLE_INSTALLS: false
+  #     - name: Build documentation
+  #       run: yarn build
+  #     - name: Deploy to GitHub Pages
+  #       if: github.ref == 'refs/heads/master'
+  #       uses: peaceiris/actions-gh-pages@v3
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: ./docs/build
+  #         enable_jekyll: false
+  #         user_name: ${{ env.USER }}
+  #         user_email: ${{ env.EMAIL }}
+
+  # lighthouse:
+  #   if: github.ref != 'refs/heads/master'
+  #   needs: [yml-md-style, code-style]
+  #   permissions:
+  #     pull-requests: write
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
+
+  #     - run: cp .env.test .env && yarn
+
+  #     - name: Audit URLs using Lighthouse
+  #       id: lighthouse_audit
+  #       uses: treosh/lighthouse-ci-action@v10
+  #       with:
+  #         urls: |
+  #           http://localhost:3000
+  #         uploadArtifacts: true
+  #         temporaryPublicStorage: true
+  #         budgetPath: ./.github/lighthouse/lighthouse-budget.json
+  #         configPath: ./.github/lighthouse/lighthouserc.json
+
+  #     - name: Format lighthouse score
+  #       id: format_lighthouse_score
+  #       uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # 7.0.1
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         script: |
+  #           const results = ${{ steps.lighthouse_audit.outputs.manifest }}
+  #           const links = ${{ steps.lighthouse_audit.outputs.links }}
+  #           const createLighthouseReport = (await import(`${process.env.GITHUB_WORKSPACE}/.github/lighthouse/formatLighthouseReport.js`)).default;
+  #           const comment = createLighthouseReport({ results, links });
+  #           core.setOutput("comment", comment);
+
+  #     - name: Add Lighthouse stats as comment
+  #       id: comment_to_pr
+  #       uses: marocchino/sticky-pull-request-comment@efaaab3fd41a9c3de579aba759d2552635e590fd # 2.8.0
+  #       with:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         number: ${{ github.event.pull_request.number }}
+  #         header: lighthouse
+  #         message: ${{ steps.format_lighthouse_score.outputs.comment }}
+
+  # hashicorp:
+  #   name: Publish AMI Image and Deploy It to EC2 through HashiCorp
+  #   needs: e2e-tests
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - name: Set node version to ${{ env.NODE_VERSION }}
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
+  #     - name: Checkout HashiCorp deployment tool
+  #       shell: bash
+  #       run: git clone https://github.com/QubitPi/hashicorp-aws.git ../hashicorp-aws
+  #     - name: Checkout HashiCorp deployment config files
+  #       shell: bash
+  #       run: git clone https://${{ secrets.RUNBOOKS_REPO_TOKEN }}@github.com/QubitPi/hashicorp-aws-runbooks.git ../hashicorp-aws-runbooks
+  #     - name: Load Packer variable file
+  #       shell: bash
+  #       run: cp ../hashicorp-aws-runbooks/paion-data/nexusgraph/aws-react.pkrvars.hcl ../hashicorp-aws/hashicorp/react/images/aws-react.auto.pkrvars.hcl
+  #     - name: Load Terraform variable file
+  #       shell: bash
+  #       run: cp ../hashicorp-aws-runbooks/paion-data/nexusgraph/aws-react.tfvars ../hashicorp-aws/hashicorp/react/instances/aws-react.auto.tfvars
+  #     - name: Generate dist
+  #       run: cp ../hashicorp-aws-runbooks/paion-data/nexusgraph/.env . && yarn && yarn build
+  #     - name: Move dist to a location for HashiCorp deployment to pickup
+  #       run: mv dist ../
+  #     - name: QubitPi/hashicorp-aws
+  #       uses: QubitPi/hashicorp-aws@master
+  #       with:
+  #         hashicorp-dir: ../hashicorp-aws/hashicorp/react
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ secrets.AWS_REGION }}

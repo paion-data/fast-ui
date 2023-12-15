@@ -78,8 +78,8 @@ module.exports = function (webpackEnv) {
                   minifyURLs: true,
                 },
               }
-            : undefined
-        )
+            : undefined,
+        ),
       ),
     ],
     resolve: {
