@@ -79,37 +79,37 @@ jobs:
           spec-relative-path: ${{ matrix.test_spec }}
       # - run: npm exec -- argos upload --token ${{ secrets.ARGOS_TOKEN }} cypress/screenshots
 
-  # documentation-ci-cd:
-  #   name: Test and Deploy Documentation to GitHub Pages
-  #   needs: e2e-tests
-  #   runs-on: ubuntu-latest
-  #   defaults:
-  #     run:
-  #       working-directory: docs
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ env.NODE_VERSION }}
-  #     - name: Install nexusgraph dependencies so that TypeDoc process source files properly
-  #       run: cd ../ && yarn install
-  #       env:
-  #         YARN_ENABLE_IMMUTABLE_INSTALLS: false
-  #     - name: Install doc dependencies
-  #       run: yarn install
-  #       env:
-  #         YARN_ENABLE_IMMUTABLE_INSTALLS: false
-  #     - name: Build documentation
-  #       run: yarn build
-  #     - name: Deploy to GitHub Pages
-  #       if: github.ref == 'refs/heads/master'
-  #       uses: peaceiris/actions-gh-pages@v3
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         publish_dir: ./docs/build
-  #         enable_jekyll: false
-  #         user_name: ${{ env.USER }}
-  #         user_email: ${{ env.EMAIL }}
+  documentation-ci-cd:
+    name: Test and Deploy Documentation to GitHub Pages
+    needs: e2e-tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install nexusgraph dependencies so that TypeDoc process source files properly
+        run: cd ../ && yarn install
+        env:
+          YARN_ENABLE_IMMUTABLE_INSTALLS: false
+      - name: Install doc dependencies
+        run: yarn install
+        env:
+          YARN_ENABLE_IMMUTABLE_INSTALLS: false
+      - name: Build documentation
+        run: yarn build
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build
+          enable_jekyll: false
+          user_name: ${{ env.USER }}
+          user_email: ${{ env.EMAIL }}
 
   # lighthouse:
   #   if: github.ref != 'refs/heads/master'
