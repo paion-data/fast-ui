@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 export default function App(): JSX.Element {
-  return <></>;
+  return <>Did you see me, Lighthouse?</>;
 }
