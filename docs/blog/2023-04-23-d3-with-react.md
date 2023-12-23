@@ -36,7 +36,6 @@ The other sources that I have found seem to be on more of a similar page. They a
 direct D3 to an SVG and `useEffect` to manipulate it.
 
 - [griddynamics: Using D3.js with React.js: An 8-step comprehensive manual](https://blog.griddynamics.com/using-d3-js-with-react-js-an-8-step-comprehensive-manual/)
-- [Pluralsight: Using D3.js Inside a React App](https://www.pluralsight.com/guides/using-d3.js-inside-a-react-app)
 - [LogRocket: Using D3.js v6 with React](https://blog.logrocket.com/using-d3-js-v6-with-react/)
 
 Configurable D3 Graph
