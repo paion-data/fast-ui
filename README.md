@@ -5,7 +5,7 @@
 
 ## License
 
-The use and distribution terms for react-template are covered by the [Apache License, Version 2.0].
+The use and distribution terms for [react-template]() are covered by the [Apache License, Version 2.0].
 
 [Apache License, Version 2.0]: http://www.apache.org/licenses/LICENSE-2.0.html
 [license badge]: https://img.shields.io/badge/Apache%202.0-F25910.svg?style=for-the-badge&logo=Apache&logoColor=white
