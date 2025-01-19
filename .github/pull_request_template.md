@@ -1,5 +1,4 @@
-Changelog
----------
+## Changelog
 
 ### Added
 
@@ -13,9 +12,8 @@ Changelog
 
 ### Security
 
-Checklist
----------
+## Checklist
 
-* [ ] Test
-* [ ] Self-review
-* [ ] Documentation
+- [ ] Test
+- [ ] Self-review
+- [ ] Documentation

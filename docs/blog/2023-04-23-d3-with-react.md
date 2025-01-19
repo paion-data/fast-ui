@@ -12,8 +12,7 @@ it binds data to DOM objects and gives us lots of ways to manipulate them, which
 manipulate SVG graphics, and thus data visualization. It appears to have a bit of a learning curve but we are up for
 it. I would rather learn something new than get bottle-necked later using a prebuilt library.
 
-Compatibility with React
-------------------------
+## Compatibility with React
 
 There is a fundamental compatibility issue between React and D3. Because React creates a
 [Virtual DOM][Virtual DOM], and D3 works by creating and manipulating objects in the actual DOM, we have to find a way
@@ -24,22 +23,12 @@ We would think that there would just be a package that would handle this. There 
 However this package is no longer maintained and the last commit was 4 years ago. So this does not seem like the route
 to go down.
 
-Here are some of the other methods that people have written about.
-
-Amelia Wattenberger has written an excellent article [React + D3][React + D3] where she basically advocates that we
-shouldn't be using the D3 methods that render the SVG graphics, but to render them all manually using JSX and only use
-D3 methods that do math like calculating scale. On the one hand she may have a point here, but on the other hand she is
-basically throwing away the majority of the D3 methods and recreating them which is a huge duplication of effort. It's
-almost as if her answer to the question of how to use D3 with React is "You don't".
-
-The other sources that I have found seem to be on more of a similar page. They advocate a combination of `useRef` to
-direct D3 to an SVG and `useEffect` to manipulate it.
+Some advocate a combination of `useRef` to direct D3 to an SVG and `useEffect` to manipulate it.
 
 - [griddynamics: Using D3.js with React.js: An 8-step comprehensive manual](https://blog.griddynamics.com/using-d3-js-with-react-js-an-8-step-comprehensive-manual/)
 - [LogRocket: Using D3.js v6 with React](https://blog.logrocket.com/using-d3-js-v6-with-react/)
 
-Configurable D3 Graph
----------------------
+## Configurable D3 Graph
 
 :::tip
 
@@ -335,9 +324,9 @@ data and the document in sync_.
 - Bind data to this selection. Based on the above mentioned selection this will, on a per-element basis, compute a join
   checking if the new data is
 
-    - not yet bound to this selection, or
-    - has been bound before, or
-    - was bound before but is not included in the new data any more.
+  - not yet bound to this selection, or
+  - has been bound before, or
+  - was bound before but is not included in the new data any more.
 
   Depending on the result of this check the selection will be divided into an **enter**, an **update**, or an **exit**
   selection, respectively.
@@ -363,46 +352,45 @@ The remaining defines the behavior:
 
 - [Element: mousedown event](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event)
 
-    - `linkMousedown`
-    - `nodeMousedown`
-    - `mousedown`
+  - `linkMousedown`
+  - `nodeMousedown`
+  - `mousedown`
 
 - [Element: mouseout event](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event)
 
-    - `nodeMouseout`
+  - `nodeMouseout`
 
 - [Element: mouseover event](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseover_event)
 
-    - `nodeMouseover`
+  - `nodeMouseover`
 
 - [Element: keydown event](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event)
 
-    - `windowKeydown`
+  - `windowKeydown`
 
 - [Element: mousemove event](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event)
 
-    - `windowMousemove`
+  - `windowMousemove`
 
 - [Element: mouseup event](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event)
 
-    - `windowMouseup`
-    - Note that is we would like to implement the behavior of not drawing the link when either of the link endpoints
-      contains a node, we would have something like the following:
+  - `windowMouseup`
+  - Note that is we would like to implement the behavior of not drawing the link when either of the link endpoints
+    contains a node, we would have something like the following:
 
-      ```javascript
-      if (selectedSourceNode != null && selectedTargetNode != null) {
-        links.push({ source: selectedSourceNode, target: d });
-        update();
-      } else {
-        newLine.remove();
-        newLine = null;
-      }
-      ```
+    ```javascript
+    if (selectedSourceNode != null && selectedTargetNode != null) {
+      links.push({ source: selectedSourceNode, target: d });
+      update();
+    } else {
+      newLine.remove();
+      newLine = null;
+    }
+    ```
 
-      The `newLine = null` makes sure the same behavior can repeat.
+    The `newLine = null` makes sure the same behavior can repeat.
 
-Reference
----------
+## Reference
 
 - [D3 with React](https://ncoughlin.com/posts/d3-react/)
 - [Simple D3 with React Hooks](https://medium.com/@jeffbutsch/using-d3-in-react-with-hooks-4a6c61f1d102)
@@ -414,8 +402,8 @@ Reference
 [forces]: https://github.com/d3/d3-force#simulation_force
 [phyllotaxis arrangement]: https://observablehq.com/@d3/force-layout-phyllotaxis
 [react-d3-library]: https://github.com/react-d3-library/react-d3-library
-[React + D3]: https://wattenberger.com/blog/react-and-d3
 [Virtual DOM]: https://reactjs.org/docs/faq-internals.html
 
 [^1]: https://stackoverflow.com/questions/49441793/d3-difference-between-layout-force-forcesimulation-to-build-network-graph#comment85885511_49441793
+
 [^2]: https://stackoverflow.com/a/62563459

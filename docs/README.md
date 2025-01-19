@@ -1,5 +1,4 @@
-ract-template Documentation
----------------------------
+## ract-template Documentation
 
 This website is built using [Docusaurus 3](https://docusaurus.io/), a modern static website generator.
 
@@ -37,6 +36,8 @@ example:
 
 ```markdown
 <!-- markdown-link-check-disable -->
+
 known. Additionally, this process makes it easy to implement a [blue-green deployment](continuous-delivery) or
+
 <!-- markdown-link-check-enable -->
 ```

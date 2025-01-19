@@ -26,28 +26,120 @@ env:
   NODE_VERSION: 18
 
 jobs:
-  yml-md-style:
-    uses: QubitPi/hashicorp-aws/.github/workflows/yml-and-md-style-checks.yml@master
+  cancel-previous:
+    name: Cancel Previous Runs In Order to Allocate Action Resources Immediately for Current Run
+    if: github.ref != 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel previous
+        uses: styfle/cancel-workflow-action@0.10.1
+        with:
+          access_token: ${{ github.token }}
+
+  yaml-lint:
+    name: YAML Style Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actionshub/yamllint@main
+
+  markdown-lint:
+    name: Markdown Style Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actionshub/markdownlint@main
+
+  linkChecker:
+    name: Link Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.9.0
+        with:
+          fail: true
 
   code-style:
     name: Code Style Check
     runs-on: ubuntu-latest
     steps:
-      - uses: QubitPi/hashicorp-aws/auxiliary/github/actions/ui-code-style@master
+      - uses: actions/checkout@v3
+      - name: Set node version to ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Code style check
+        run: yarn prettier --ignore-path .gitignore . --check
+      - name: ESLint
+        run: yarn eslint .
+
+  lighthouse:
+    if: github.ref != 'refs/heads/master'
+    needs: [yaml-lint, markdown-lint, linkChecker, code-style]
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: cp .env.test .env && yarn
+
+      - name: Audit URLs using Lighthouse
+        id: lighthouse_audit
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            http://localhost:3000
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          budgetPath: ./.github/lighthouse/lighthouse-budget.json
+          configPath: ./.github/lighthouse/lighthouserc.json
+
+      - name: Format lighthouse score
+        id: format_lighthouse_score
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea #  7.0.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const results = ${{ steps.lighthouse_audit.outputs.manifest }}
+            const links = ${{ steps.lighthouse_audit.outputs.links }}
+            const createLighthouseReport = (await import(`${process.env.GITHUB_WORKSPACE}/.github/lighthouse/formatLighthouseReport.js`)).default;
+            const comment = createLighthouseReport({ results, links });
+            core.setOutput("comment", comment);
+
+      - name: Add Lighthouse stats as comment
+        id: comment_to_pr
+        uses: marocchino/sticky-pull-request-comment@efaaab3fd41a9c3de579aba759d2552635e590fd #  2.8.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ github.event.pull_request.number }}
+          header: lighthouse
+          message: ${{ steps.format_lighthouse_score.outputs.comment }}
 
   unit-tests:
     name: Unit Tests
-    needs: [yml-md-style, code-style]
+    needs: [yaml-lint, markdown-lint, linkChecker, code-style]
     runs-on: ubuntu-latest
     steps:
-      - uses: QubitPi/hashicorp-aws/auxiliary/github/actions/ui-unit-test@master
+      - uses: actions/checkout@v3
+      - name: Set node version to ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Run unit tests
+        run: yarn test
 
   list-e2e-specs:
     needs: unit-tests
+    name: Enumerate E2E tests and prepare to run them in parallel
     runs-on: ubuntu-latest
     outputs:
       paths: ${{ steps.list-e2e-specs.outputs.paths }}
@@ -69,7 +161,7 @@ jobs:
       fail-fast: false
       matrix:
         test_spec: ${{ fromJson(needs.list-e2e-specs.outputs.paths) }}
-        start_strategy: ["yarn-start", "serve"]
+        mode: ["dev", "prod"]
         node_version: [18]
     steps:
       - uses: actions/checkout@v3
@@ -78,15 +170,37 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Install dependencies
-        run: yarn
+        run: npm install -g yarn@1.22.19 && yarn
       - name: Load test .env file
         run: mv .env.test .env
-      - uses: QubitPi/hashicorp-aws/auxiliary/github/actions/cypress-e2e@master
+      - name: Start app in ${{ matrix.mode }} mode
+        run: |
+          npm install -g wait-on
+
+          if [[ ${{ matrix.mode }} == 'dev' ]]; then
+              yarn start &
+          else
+              yarn build
+              npm install -g serve
+              serve -s dist -l 3000 &
+          fi
+      - name: Wait until app is up and running
+        run: wait-on http://127.0.0.1:3000
+      - name: Run E2E tests
+        run: yarn e2e --spec "${{ matrix.test_spec }}"
+      - id: extract-spec-filename
+        if: failure()
+        run: |
+          id=$(echo "${{ matrix.test_spec }}" | sed s:/:_:g)
+          echo "::set-output name=id::$id"
+      - name: Upload test videos and screenshots on test failure
+        if: failure()
+        uses: actions/upload-artifact@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          start-strategy: ${{ matrix.start_strategy }}
-          spec-relative-path: ${{ matrix.test_spec }}
-      # - run: npm exec -- argos upload --token ${{ secrets.ARGOS_TOKEN }} cypress/screenshots
+          name: ${{ matrix.mode }}-${{steps.extract-spec-filename.outputs.id}}-${{ env.NODE_VERSION }}
+          path: |
+            ./cypress/videos
+            ./cypress/screenshots
 
   documentation-ci-cd:
     name: Test and Deploy Documentation to GitHub Pages
@@ -119,84 +233,3 @@ jobs:
           enable_jekyll: false
           user_name: ${{ env.USER }}
           user_email: ${{ env.EMAIL }}
-
-  lighthouse:
-    if: github.ref != 'refs/heads/master'
-    needs: [yml-md-style, code-style]
-    permissions:
-      pull-requests: write
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - run: cp .env.test .env && yarn
-
-      - name: Audit URLs using Lighthouse
-        id: lighthouse_audit
-        uses: treosh/lighthouse-ci-action@v10
-        with:
-          urls: |
-            http://localhost:3000
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-          budgetPath: ./.github/lighthouse/lighthouse-budget.json
-          configPath: ./.github/lighthouse/lighthouserc.json
-
-      - name: Format lighthouse score
-        id: format_lighthouse_score
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # 7.0.1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const results = ${{ steps.lighthouse_audit.outputs.manifest }}
-            const links = ${{ steps.lighthouse_audit.outputs.links }}
-            const createLighthouseReport = (await import(`${process.env.GITHUB_WORKSPACE}/.github/lighthouse/formatLighthouseReport.js`)).default;
-            const comment = createLighthouseReport({ results, links });
-            core.setOutput("comment", comment);
-
-      - name: Add Lighthouse stats as comment
-        id: comment_to_pr
-        uses: marocchino/sticky-pull-request-comment@efaaab3fd41a9c3de579aba759d2552635e590fd # 2.8.0
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ github.event.pull_request.number }}
-          header: lighthouse
-          message: ${{ steps.format_lighthouse_score.outputs.comment }}
-
-  # hashicorp:
-  #   name: Publish AMI Image and Deploy It to EC2 through HashiCorp
-  #   needs: e2e-tests
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #     - name: Set node version to ${{ env.NODE_VERSION }}
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ env.NODE_VERSION }}
-  #     - name: Checkout HashiCorp deployment tool
-  #       shell: bash
-  #       run: git clone https://github.com/QubitPi/hashicorp-aws.git ../hashicorp-aws
-  #     - name: Checkout HashiCorp deployment config files
-  #       shell: bash
-  #       run: git clone https://${{ secrets.RUNBOOKS_REPO_TOKEN }}@github.com/QubitPi/hashicorp-aws-runbooks.git ../hashicorp-aws-runbooks
-  #     - name: Load Packer variable file
-  #       shell: bash
-  #       run: cp ../hashicorp-aws-runbooks/paion-data/nexusgraph/aws-react.pkrvars.hcl ../hashicorp-aws/hashicorp/react/images/aws-react.auto.pkrvars.hcl
-  #     - name: Load Terraform variable file
-  #       shell: bash
-  #       run: cp ../hashicorp-aws-runbooks/paion-data/nexusgraph/aws-react.tfvars ../hashicorp-aws/hashicorp/react/instances/aws-react.auto.tfvars
-  #     - name: Generate dist
-  #       run: cp ../hashicorp-aws-runbooks/paion-data/nexusgraph/.env . && yarn && yarn build
-  #     - name: Move dist to a location for HashiCorp deployment to pickup
-  #       run: mv dist ../
-  #     - name: QubitPi/hashicorp-aws
-  #       uses: QubitPi/hashicorp-aws@master
-  #       with:
-  #         hashicorp-dir: ../hashicorp-aws/hashicorp/react
-  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #         aws-region: ${{ secrets.AWS_REGION }}
