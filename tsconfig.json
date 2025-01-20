@@ -12,5 +12,5 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["packages"]
+  "include": ["packages", "custom.d.ts"]
 }

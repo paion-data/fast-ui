@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2025 Jiaqi Liu. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,12 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { defineConfig } from "cypress";
 
-export default defineConfig({
-  e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
-  },
-});
+declare module "*.svg" {
+  const content: string;
+  export default content;
+}
+
+declare module "*.png" {
+  const content: string;
+  export default content;
+}
+
+declare module "*.css";
+declare module "*.less";
+
+interface Window {
+  Cypress?: unknown;
+}
