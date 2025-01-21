@@ -24,7 +24,7 @@ import { store } from "fast-ui-redux";
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
-    dsn: "https://5e82dcf741091e63d616982f0cbcf0e5@o4505480921022464.ingest.us.sentry.io/4508702863589376",
+    dsn: "https://bf0c538cf92cc0f08995225796399fe2@o4505480921022464.ingest.us.sentry.io/4508703437553664",
     integrations: [Sentry.browserTracingIntegration(), Sentry.replayIntegration()],
     tracesSampleRate: 1.0,
     replaysSessionSampleRate: 0.1,
