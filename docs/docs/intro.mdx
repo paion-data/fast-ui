@@ -8,8 +8,8 @@ FastUI is a methodology for creating monorepo React applications. It offers a mo
 ## Creating a Repository from GitHub Template
 
 We can click on this link to generate a repository using the template:
-[Create a new repository](https://github.com/QubitPi/fast-ui/generate) from QubitPi/fast-ui.
-Alternatively, we can visit the [fast-ui repository on GitHub](https://github.com/QubitPi/fast-ui) and
+[Create a new repository](https://github.com/paion-data/fast-ui/generate) from paion-data/fast-ui.
+Alternatively, we can visit the [fast-ui repository on GitHub](https://github.com/paion-data/fast-ui) and
 click on the "Use this template" button on the top-right.
 
 In both cases, the next steps are:
@@ -37,7 +37,7 @@ documentation contain further details on how to proceed next.
 
 :::note
 
-The following steps apply to the newly created repository, not the QubitPi/fast-ui template repository.
+The following steps apply to the newly created repository, not the paion-data/fast-ui template repository.
 
 :::
 
@@ -86,7 +86,7 @@ Our app is ready to be deployed.
 
 ### Enabling Automatic Deployment to GitHub Pages
 
-Navigate to [.github/workflows/ci-cd.yaml](https://github.com/QubitPi/fast-ui/blob/master/.github/workflows/ci-cd.yaml)
+Navigate to [.github/workflows/ci-cd.yaml](https://github.com/paion-data/fast-ui/blob/master/.github/workflows/ci-cd.yaml)
 and change the `documentation-ci-cd` to a new definition called `deploy` as follows:
 
 <!-- prettier-ignore -->
@@ -129,7 +129,7 @@ jobs:
 -     - name: Build documentation
 -       run: yarn build
 -     - name: Load CNAME
--       run: echo fastui.qubitpi.org > build/CNAME
+-       run: echo fastui.paion-data.com > build/CNAME
 -     - name: Deploy to GitHub Pages
 -       if: github.ref == 'refs/heads/master'
 -       uses: peaceiris/actions-gh-pages@v3
@@ -244,7 +244,7 @@ import { Arcade } from "../src/components/arcade";
 
 #### Adding the Sentry SDK to Project
 
-Open [src/index.tsx](https://github.com/QubitPi/fast-ui/blob/master/packages/fast-ui-app/src/index.tsx) and change the
+Open [src/index.tsx](https://github.com/paion-data/fast-ui/blob/master/packages/fast-ui-app/src/index.tsx) and change the
 following lines of code as follows:
 
 <!-- prettier-ignore -->
