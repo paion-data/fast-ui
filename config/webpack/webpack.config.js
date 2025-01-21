@@ -23,7 +23,7 @@ module.exports = function (webpackEnv) {
   const isProdEnvironment = webpackEnv === "production";
 
   return {
-    entry: "./packages/react-template-app/src/index.tsx",
+    entry: "./packages/fast-ui-app/src/index.tsx",
     mode: isProdEnvironment ? "production" : "development",
     output: {
       publicPath: "/",
@@ -69,7 +69,7 @@ module.exports = function (webpackEnv) {
           {},
           {
             inject: true,
-            template: "./packages/react-template-app/public/index.html",
+            template: "./packages/fast-ui-app/public/index.html",
           },
           isProdEnvironment
             ? {

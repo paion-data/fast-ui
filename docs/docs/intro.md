@@ -8,8 +8,8 @@ To use JWT as the basis for a webservice, we start by creating a repository usin
 ## Creating a Repository from GitHub Template
 
 We can click on this link to generate a repository using the template:
-[Create a new repository](https://github.com/QubitPi/react-template/generate) from QubitPi/react-template.
-Alternatively, we can visit the [react-template repository on GitHub](https://github.com/QubitPi/react-template) and
+[Create a new repository](https://github.com/QubitPi/fast-ui/generate) from QubitPi/fast-ui.
+Alternatively, we can visit the [fast-ui repository on GitHub](https://github.com/QubitPi/fast-ui) and
 click on the "Use this template" button on the top-right.
 
 In both cases, the next steps are:

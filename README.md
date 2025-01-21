@@ -30,22 +30,22 @@ to improve the velocity and quality of their teams' work.
     - Unit & End-to-End Tests [![Jest](https://img.shields.io/badge/Jest%20Unit%20Tests-C21325?style=for-the-badge&logo=jest&logoColor=white)](https://jest.qubitpi.org/) [![Cypress](https://img.shields.io/badge/Cypress%20E2E-69D3A7?style=for-the-badge&logo=cypress&logoColor=white)](https://cypress.qubitpi.org)
     - Performance Tests [![Lighthouse](https://img.shields.io/badge/Lighthouse-F44B21?style=for-the-badge&logo=lighthouse&logoColor=white)](https://developer.chrome.com/docs/lighthouse/overview)
 
-      ![](https://github.com/QubitPi/react-template/blob/master/docs/docs/img/lighthouse-report-example.png?raw=true)
+      ![](https://github.com/QubitPi/fast-ui/blob/master/docs/docs/img/lighthouse-report-example.png?raw=true)
 
-    - UI Snapshot Tests [![Covered by Argos Visual Testing](https://argos-ci.com/badge-large.svg)](https://app.argos-ci.com/qubitpi/react-template/reference)
+    - UI Snapshot Tests [![Covered by Argos Visual Testing](https://argos-ci.com/badge-large.svg)](https://app.argos-ci.com/qubitpi/fast-ui/reference)
 
-      ![](https://github.com/QubitPi/react-template/blob/master/docs/docs/img/argos-example.png?raw=true)
+      ![](https://github.com/QubitPi/fast-ui/blob/master/docs/docs/img/argos-example.png?raw=true)
 
-- Auto-generated documentations [![TypeDoc](https://img.shields.io/badge/TypeDoc-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://qubitpi.github.io/react-template/api/)
+- Auto-generated documentations [![TypeDoc](https://img.shields.io/badge/TypeDoc-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://fastui.qubitpi.org/api/)
 
 ## License
 
-The use and distribution terms for [react-template] are covered by the [Apache License, Version 2.0]
+The use and distribution terms for [FastUI]() are covered by the [Apache License, Version 2.0]
 
 [Apache License Badge]: https://img.shields.io/badge/Apache%202.0-F25910.svg?style=for-the-badge&logo=Apache&logoColor=white
 [Apache License, Version 2.0]: https://www.apache.org/licenses/LICENSE-2.0
 [Create React App]: https://create-react-app.dev/
 [GitHub templates]: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository#about-template-repositories
-[GitHub Workflow Status]: https://img.shields.io/github/actions/workflow/status/QubitPi/react-template/ci-cd.yaml?branch=master&logo=github&style=for-the-badge
-[GitHub Workflow URL]: https://github.com/QubitPi/react-template/actions/workflows/ci-cd.yaml
+[GitHub Workflow Status]: https://img.shields.io/github/actions/workflow/status/QubitPi/fast-ui/ci-cd.yaml?branch=master&logo=github&style=for-the-badge
+[GitHub Workflow URL]: https://github.com/QubitPi/fast-ui/actions/workflows/ci-cd.yaml
 [Node Version Badge]: https://img.shields.io/badge/NODE-18-339933?logo=Node.js&logoColor=white&labelColor=66cc33&style=for-the-badge

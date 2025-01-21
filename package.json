@@ -1,7 +1,7 @@
 {
-  "name": "react-template",
+  "name": "fast-ui",
   "workspaces": [
-    "./packages/react-template-app"
+    "./packages/fast-ui-app"
   ],
   "version": "0.1.0",
   "engines": {
@@ -20,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/QubitPi/react-template.git"
+    "url": "git+https://github.com/QubitPi/fast-ui.git"
   },
   "author": "Jiaqi Liu",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/QubitPi/react-template/issues"
+    "url": "https://github.com/QubitPi/fast-ui/issues"
   },
-  "homepage": "https://github.com/QubitPi/react-template#readme",
+  "homepage": "https://github.com/QubitPi/fast-ui#readme",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

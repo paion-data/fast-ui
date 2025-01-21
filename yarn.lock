@@ -5752,6 +5752,55 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-ui-app@workspace:packages/fast-ui-app":
+  version: 0.0.0-use.local
+  resolution: "fast-ui-app@workspace:packages/fast-ui-app"
+  languageName: unknown
+  linkType: soft
+
+"fast-ui@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "fast-ui@workspace:."
+  dependencies:
+    "@argos-ci/cypress": "npm:^3.1.0"
+    "@babel/cli": "npm:^7.23.4"
+    "@babel/core": "npm:^7.23.6"
+    "@babel/preset-env": "npm:^7.23.6"
+    "@babel/preset-react": "npm:^7.23.3"
+    "@babel/preset-typescript": "npm:^7.23.3"
+    "@testing-library/jest-dom": "npm:^6.1.5"
+    "@testing-library/react": "npm:^14.1.2"
+    "@types/jest": "npm:^27.5.2"
+    "@typescript-eslint/eslint-plugin": "npm:^6.14.0"
+    "@typescript-eslint/parser": "npm:^6.14.0"
+    babel-jest: "npm:^27.4.2"
+    babel-loader: "npm:^9.1.3"
+    css-loader: "npm:^6.8.1"
+    cypress: "npm:^13.6.1"
+    eslint: "npm:^8.55.0"
+    eslint-config-prettier: "npm:^9.1.0"
+    eslint-config-standard-with-typescript: "npm:^42.0.0"
+    eslint-plugin-import: "npm:^2.25.2"
+    eslint-plugin-n: "npm:^15.0.0 || ^16.0.0 "
+    eslint-plugin-promise: "npm:^6.0.0"
+    eslint-plugin-react: "npm:^7.33.2"
+    html-webpack-plugin: "npm:^5.5.4"
+    jest: "npm:^27.4.3"
+    prettier: "npm:3.4.2"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
+    react-test-renderer: "npm:^18.2.0"
+    style-loader: "npm:^3.3.3"
+    svg-url-loader: "npm:^8.0.0"
+    ts-jest: "npm:^27.1.4"
+    typescript: "npm:^5.3.3"
+    wait-on: "npm:^7.2.0"
+    webpack: "npm:^5.89.0"
+    webpack-cli: "npm:^5.1.4"
+    webpack-dev-server: "npm:^4.15.1"
+  languageName: unknown
+  linkType: soft
+
 "fastest-levenshtein@npm:^1.0.12":
   version: 1.0.16
   resolution: "fastest-levenshtein@npm:1.0.16"
@@ -9408,55 +9457,6 @@ __metadata:
   checksum: 06457fe5bcaa44aeca998905b6849304742ea1cc2d3841e4a0964c745ff392bc4dec07f8c779f317faacce3a0bf6f84e15020ac0fa81adb931067dbb0baf707b
   languageName: node
   linkType: hard
-
-"react-template-app@workspace:packages/react-template-app":
-  version: 0.0.0-use.local
-  resolution: "react-template-app@workspace:packages/react-template-app"
-  languageName: unknown
-  linkType: soft
-
-"react-template@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-template@workspace:."
-  dependencies:
-    "@argos-ci/cypress": "npm:^3.1.0"
-    "@babel/cli": "npm:^7.23.4"
-    "@babel/core": "npm:^7.23.6"
-    "@babel/preset-env": "npm:^7.23.6"
-    "@babel/preset-react": "npm:^7.23.3"
-    "@babel/preset-typescript": "npm:^7.23.3"
-    "@testing-library/jest-dom": "npm:^6.1.5"
-    "@testing-library/react": "npm:^14.1.2"
-    "@types/jest": "npm:^27.5.2"
-    "@typescript-eslint/eslint-plugin": "npm:^6.14.0"
-    "@typescript-eslint/parser": "npm:^6.14.0"
-    babel-jest: "npm:^27.4.2"
-    babel-loader: "npm:^9.1.3"
-    css-loader: "npm:^6.8.1"
-    cypress: "npm:^13.6.1"
-    eslint: "npm:^8.55.0"
-    eslint-config-prettier: "npm:^9.1.0"
-    eslint-config-standard-with-typescript: "npm:^42.0.0"
-    eslint-plugin-import: "npm:^2.25.2"
-    eslint-plugin-n: "npm:^15.0.0 || ^16.0.0 "
-    eslint-plugin-promise: "npm:^6.0.0"
-    eslint-plugin-react: "npm:^7.33.2"
-    html-webpack-plugin: "npm:^5.5.4"
-    jest: "npm:^27.4.3"
-    prettier: "npm:3.4.2"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
-    react-test-renderer: "npm:^18.2.0"
-    style-loader: "npm:^3.3.3"
-    svg-url-loader: "npm:^8.0.0"
-    ts-jest: "npm:^27.1.4"
-    typescript: "npm:^5.3.3"
-    wait-on: "npm:^7.2.0"
-    webpack: "npm:^5.89.0"
-    webpack-cli: "npm:^5.1.4"
-    webpack-dev-server: "npm:^4.15.1"
-  languageName: unknown
-  linkType: soft
 
 "react-test-renderer@npm:^18.2.0":
   version: 18.2.0

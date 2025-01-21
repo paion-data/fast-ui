@@ -10,7 +10,7 @@ const config: Config = {
   url: "https://fastui.qubitpi.org",
   baseUrl: "/",
   organizationName: "QubitPi",
-  projectName: "react-template",
+  projectName: "fast-ui",
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -63,7 +63,7 @@ const config: Config = {
           label: "Tutorial",
         },
         {
-          href: "https://qubitpi.github.io/react-template/api/",
+          href: "https://fastui.qubitpi.org/api/",
           label: "API",
           position: "left",
         },
