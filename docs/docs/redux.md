@@ -28,5 +28,5 @@ function MyComponent(): JSX.Element {
 export default App;
 ```
 
-[Redux]: https://react-redux.qubitpi.org/
-[useState]: https://react.qubitpi.org/reference/react/useState
+[Redux]: https://react-redux.js.org/
+[useState]: https://react.dev/reference/react/useState
