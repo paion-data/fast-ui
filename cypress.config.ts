@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 import { defineConfig } from "cypress";
+const { registerArgosTask } = require("@argos-ci/cypress/task");
 
 export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      registerArgosTask(on, config, {
+        uploadToArgos: !!process.env.CI, // Enable upload to Argos only when it runs on CI.
+        token: process.env.ARGOS_TOKEN,
+      });
     },
   },
 });

@@ -16,4 +16,9 @@ describe("template spec", () => {
   it("passes", () => {
     cy.visit("http://localhost:3000");
   });
+
+  it("screenshot homepage", async () => {
+    cy.visit("https://localhost:3000/");
+    cy.argosScreenshot("homepage");
+  });
 });

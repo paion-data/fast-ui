@@ -188,6 +188,8 @@ jobs:
         run: wait-on http://127.0.0.1:3000
       - name: Run E2E tests
         run: yarn e2e --spec "${{ matrix.test_spec }}"
+        env:
+          ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN }}
       - id: extract-spec-filename
         if: failure()
         run: |
