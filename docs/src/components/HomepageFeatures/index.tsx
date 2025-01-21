@@ -10,32 +10,28 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Lighthouse CI",
-    Svg: require("@site/static/img/google-lighthouse.svg").default,
+    title: "Less to Learn",
+    Svg: require("@site/static/img/dancing.svg").default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and used to get your website up and running
-        quickly.
+        No need to learn and configure many build tools. Instant reloads help software engineer focus on development.
+        When it's time to deploy, app bundles are optimized automatically.
       </>
     ),
   },
   {
     title: "Focus on What Matters",
-    Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go ahead and move your docs into the{" "}
-        <code>docs</code> directory.
-      </>
-    ),
+    Svg: require("@site/static/img/business.svg").default,
+    description: <>FastUI lets us focus on our business logics, and the template will do the chores.</>,
   },
   {
-    title: "Powered by React",
-    Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
+    title: "Complete Control",
+    Svg: require("@site/static/img/unbox.svg").default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can be extended while reusing the same
-        header and footer.
+        Under the hood, FastUI uses webpack, Babel, ESLint, and other amazing projects to power the app and gives
+        developer complete control of every aspect of frontend development. All project configs are surfaced and
+        directly tunable
       </>
     ),
   },

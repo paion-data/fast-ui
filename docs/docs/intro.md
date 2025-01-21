@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: Getting Started
 ---
 
-To use JWT as the basis for a webservice, we start by creating a repository using the template on GitHub.
+FastUI is a methodology for creating monorepo React applications. It offers a modern build setup with no configuration.
 
 ## Creating a Repository from GitHub Template
 
@@ -35,10 +35,48 @@ At this point, A ReactJS project with just what we need to start quickly has bee
 start adding business value and **get work done much faster in a standard way**. The following sections of this
 documentation contain further details on how to proceed next.
 
-References used to create this template:
+```console
+yarn
+yarn start
+```
 
-- [Create Monorepo Project from Scratch](https://react.qubitpi.org/learn/start-a-new-react-project#create-monorepo-from-scratch)
-- [Typedoc](https://qubitpi.github.io/typedoc-site/guides/installation/#integrating-with-docusaurus)
+Then open http://localhost:3000/ to see the app. When we are ready to deploy to production, create a minified bundle
+with
+
+```console
+yarn build
+```
+
+That's it. We don't need to install or configure tools like webpack or Babel. They are preconfigured and hidden so that
+we can focus on the code.
+
+## Scripts
+
+Inside the newly created project, we can run some built-in commands:
+
+### `yarn start`
+
+Runs the app in development mode. Open http://localhost:3000 to view it in the browser. The page automatically reloads
+if we make changes to the code. we will see the build errors and lint warnings in the console.
+
+![](img/screencast-error.svg)
+
+### `yarn test`
+
+Runs the unit tests
+
+### `yarn cypress:open` and `yarn e2e`
+
+Opens Cypress End-to-End test console and runs the End-to-End tests, respectively
+
+### `yarn build`
+
+Builds the app for production to the build folder. It correctly bundles React in production mode and optimizes the build
+for the best performance. The build is minified and the filenames include the hashes.
+
+Our app is ready to be deployed.
+
+## Developing App
 
 ### Automatically Formatting Codebase
 

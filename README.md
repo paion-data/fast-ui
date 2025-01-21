@@ -11,9 +11,9 @@ to improve the velocity and quality of their teams' work.
 
 > [!NOTE]
 >
-> Unlike Create React App's [eject](https://create-react-app.dev/docs/available-scripts#npm-run-eject), **React
-> Template** gives developer **total control of every aspect of frontend development**; all configs are surfaced and
-> directly tunable, such as Jest Babel configs, without "ejecting".
+> Unlike Create React App's [eject mechanism](https://create-react-app.dev/docs/available-scripts#npm-run-eject), FastUI gives developer **total control of every aspect of frontend
+> development**; all configs are surfaced and directly tunable, such as Jest Babel configs, without "ejecting" or
+> dependence on external config library.
 
 ## ✨ Features
 
