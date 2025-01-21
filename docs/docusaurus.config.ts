@@ -7,8 +7,8 @@ const config: Config = {
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
 
-  url: "https://qubitpi.github.io",
-  baseUrl: "/react-template/",
+  url: "https://fastui.qubitpi.org",
+  baseUrl: "/",
   organizationName: "QubitPi",
   projectName: "react-template",
 

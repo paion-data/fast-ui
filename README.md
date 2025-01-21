@@ -1,12 +1,12 @@
-# React Template
+# FastUI
 
 ![Node Version Badge]
 [![GitHub Workflow Status]][GitHub Workflow URL]
 [![Apache License Badge]][Apache License, Version 2.0]
 
-**React Template** is a TypeScript React+Webpack web app template that lets us spin up frontend project quickly through
+**FastUI** is a TypeScript React+Webpack web app template that lets us spin up frontend project quickly through
 [GitHub templates]. One can think of it as the monorepo version of Facebooks's [Create React App] but with intense focus
-and improvements on software CI/CD, such as automated testing. At the end of the day, React Template helps organization
+and improvements on software CI/CD, such as automated testing. At the end of the day, FastUI helps organization
 to improve the velocity and quality of their teams' work.
 
 > [!NOTE]
@@ -29,7 +29,12 @@ to improve the velocity and quality of their teams' work.
 
     - Unit & End-to-End Tests [![Jest](https://img.shields.io/badge/Jest%20Unit%20Tests-C21325?style=for-the-badge&logo=jest&logoColor=white)](https://jest.qubitpi.org/) [![Cypress](https://img.shields.io/badge/Cypress%20E2E-69D3A7?style=for-the-badge&logo=cypress&logoColor=white)](https://cypress.qubitpi.org)
     - Performance Tests [![Lighthouse](https://img.shields.io/badge/Lighthouse-F44B21?style=for-the-badge&logo=lighthouse&logoColor=white)](https://developer.chrome.com/docs/lighthouse/overview)
+
+      ![](https://github.com/QubitPi/react-template/blob/master/docs/docs/img/lighthouse-report-example.png?raw=true)
+
     - UI Snapshot Tests [![Covered by Argos Visual Testing](https://argos-ci.com/badge-large.svg)](https://app.argos-ci.com/qubitpi/react-template/reference)
+
+      ![](https://github.com/QubitPi/react-template/blob/master/docs/docs/img/argos-example.png?raw=true)
 
 - Auto-generated documentations [![TypeDoc](https://img.shields.io/badge/TypeDoc-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://qubitpi.github.io/react-template/api/)
 
