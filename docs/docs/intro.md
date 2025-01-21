@@ -8,8 +8,8 @@ FastUI is a methodology for creating monorepo React applications. It offers a mo
 ## Creating a Repository from GitHub Template
 
 We can click on this link to generate a repository using the template:
-[Create a new repository](https://github.com/QubitPi/fast-ui/generate) from QubitPi/fast-ui.
-Alternatively, we can visit the [fast-ui repository on GitHub](https://github.com/QubitPi/fast-ui) and
+[Create a new repository](https://github.com/paion-data/fast-ui/generate) from paion-data/fast-ui.
+Alternatively, we can visit the [fast-ui repository on GitHub](https://github.com/paion-data/fast-ui) and
 click on the "Use this template" button on the top-right.
 
 In both cases, the next steps are:

@@ -7,9 +7,9 @@ const config: Config = {
   tagline: "Set up a modern web app by quickly.",
   favicon: "img/favicon.ico",
 
-  url: "https://fastui.qubitpi.org",
+  url: "https://fastui.paion-data.com",
   baseUrl: "/",
-  organizationName: "QubitPi",
+  organizationName: "paion-data",
   projectName: "fast-ui",
 
   onBrokenLinks: "throw",
@@ -29,7 +29,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          editUrl: "https://github.com/QubitPi/fast-ui/tree/master/docs",
+          editUrl: "https://github.com/paion-data/fast-ui/tree/master/docs",
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -55,12 +55,12 @@ const config: Config = {
           label: "Docs",
         },
         {
-          href: "https://fastui.qubitpi.org/api/",
+          href: "https://fastui.paion-data.com/api/",
           label: "API",
           position: "left",
         },
         {
-          href: "https://github.com/QubitPi/fast-ui",
+          href: "https://github.com/paion-data/fast-ui",
           label: "GitHub",
           position: "right",
         },
@@ -92,12 +92,12 @@ const config: Config = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/QubitPi/fast-ui",
+              href: "https://github.com/paion-data/fast-ui",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Jiaqi Liu. Built with Docusaurus.`,
+      copyright: '<div><a href="https://beian.miit.gov.cn/#/Integrated/index">粤ICP备2024234224<a><div>',
     },
     prism: {
       theme: prismThemes.github,

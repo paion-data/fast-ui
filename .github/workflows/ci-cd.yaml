@@ -227,7 +227,7 @@ jobs:
       - name: Build documentation
         run: yarn build
       - name: Load CNAME
-        run: echo fastui.qubitpi.org > build/CNAME
+        run: echo fastui.paion-data.com > build/CNAME
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3

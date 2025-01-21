@@ -20,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/QubitPi/fast-ui.git"
+    "url": "git+https://github.com/paion-data/fast-ui.git"
   },
   "author": "Jiaqi Liu",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/QubitPi/fast-ui/issues"
+    "url": "https://github.com/paion-data/fast-ui/issues"
   },
-  "homepage": "https://github.com/QubitPi/fast-ui#readme",
+  "homepage": "https://github.com/paion-data/fast-ui#readme",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
