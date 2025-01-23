@@ -197,7 +197,7 @@ jobs:
           echo "::set-output name=id::$id"
       - name: Upload test videos and screenshots on test failure
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.mode }}-${{steps.extract-spec-filename.outputs.id}}-${{ env.NODE_VERSION }}
           path: |
