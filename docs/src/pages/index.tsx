@@ -15,7 +15,7 @@ function HomepageHeader() {
       <div className="container">
         <img
           className={clsx(styles.heroBannerLogo, "margin-vert--md")}
-          alt="Create React App logo"
+          alt="FastUI logo"
           src={useBaseUrl("img/logo-with-text.svg")}
         />
         <p className="hero__subtitle">{siteConfig.tagline}</p>

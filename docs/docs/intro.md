@@ -80,9 +80,19 @@ Our app is ready to be deployed.
 
 ### Automatically Formatting Codebase
 
+When CI/CD complains about "Code style check" as the following:
+
+![](./img/cicd-code-style-check-error-example.png)
+
+Simply run the following command at project root which will auto formatting the codebase using Prettier:
+
 ```console
 yarn prettier --ignore-path .gitignore . --write
 ```
+
+> [!TIP]
+>
+> It's always a good practice to auto-formatting code whenever convenient <img src="https://github.com/QubitPi/QubitPi/blob/master/img/%E5%BF%83%E6%B5%B7.png?raw=true" width="60px" />
 
 ### Importing SVG
 

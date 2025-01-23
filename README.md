@@ -37,6 +37,8 @@ to improve the velocity and quality of their teams' work.
       ![](https://github.com/QubitPi/fast-ui/blob/master/docs/docs/img/argos-example.png?raw=true)
 
 - Auto-generated documentations [![TypeDoc](https://img.shields.io/badge/TypeDoc-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://fastui.qubitpi.org/api/)
+- Modern state management template supporting arbitrarily complex React component wiring
+  [![Redux Badge](https://img.shields.io/badge/Redux-764ABC?logo=redux&logoColor=white&style=for-the-badge)](https://react-redux.qubitpi.org/)
 
 ## License
 
