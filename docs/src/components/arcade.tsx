@@ -14,14 +14,33 @@
  * limitations under the License.
  */
 
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
-}
-
-.featureSvg {
-  height: 200px;
-  width: 200px;
+type ArcadeProps = {
+  src: string;
+};
+export function Arcade({ src }: ArcadeProps) {
+  return (
+    <div
+      style={{
+        height: "0px",
+        paddingBottom: "calc(56.8359% + 41px)",
+        position: "relative",
+        width: "100%",
+      }}
+    >
+      <iframe
+        src={src}
+        loading="lazy"
+        allowFullScreen
+        allow="fullscreen;"
+        style={{
+          colorScheme: "light",
+          height: "100%",
+          left: "0px",
+          position: "absolute",
+          top: "0px",
+          width: "100%",
+        }}
+      />
+    </div>
+  );
 }

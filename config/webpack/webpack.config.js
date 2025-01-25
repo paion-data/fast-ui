@@ -18,6 +18,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const imageInlineSizeLimit = parseInt(process.env.IMAGE_INLINE_SIZE_LIMIT || "10000");
+const { sentryWebpackPlugin } = require("@sentry/webpack-plugin");
 
 module.exports = function (webpackEnv) {
   const isProdEnvironment = webpackEnv === "production";
@@ -25,6 +26,7 @@ module.exports = function (webpackEnv) {
   return {
     entry: "./packages/fast-ui-app/src/index.tsx",
     mode: isProdEnvironment ? "production" : "development",
+    devtool: "source-map",
     output: {
       publicPath: "/",
       path: path.resolve(__dirname, "../../dist"),
@@ -89,6 +91,11 @@ module.exports = function (webpackEnv) {
             : undefined,
         ),
       ),
+      sentryWebpackPlugin({
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+        org: "paion-data",
+        project: "qubitpi-fast-ui",
+      }),
     ],
     resolve: {
       extensions: [".ts", ".tsx", ".js", ".json"],
