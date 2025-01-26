@@ -1,7 +1,8 @@
 {
   "name": "fast-ui",
   "workspaces": [
-    "./packages/fast-ui-app"
+    "./packages/fast-ui-app",
+    "./packages/fast-ui-redux"
   ],
   "version": "0.1.0",
   "engines": {

@@ -6232,6 +6232,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"fast-ui-redux@workspace:packages/fast-ui-redux":
+  version: 0.0.0-use.local
+  resolution: "fast-ui-redux@workspace:packages/fast-ui-redux"
+  languageName: unknown
+  linkType: soft
+
 "fast-ui@workspace:.":
   version: 0.0.0-use.local
   resolution: "fast-ui@workspace:."

@@ -13,7 +13,7 @@ The template has already been configured with 2 states
 2. a boolean variable called `myState2`
 
 ```typescript
-import { selectMyState1, setMyState1, setMyState2 } from "../../fast-ui-redux";
+import { selectMyState1, setMyState1, setMyState2 } from "fast-ui-redux";
 
 function MyComponent(): JSX.Element {
   const myState1 = useAppSelector(selectMyState1);
