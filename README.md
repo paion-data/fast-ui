@@ -51,4 +51,4 @@ The use and distribution terms for [FastUI]() are covered by the [Apache License
 [GitHub templates]: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository#about-template-repositories
 [GitHub Workflow Status]: https://img.shields.io/github/actions/workflow/status/QubitPi/fast-ui/ci-cd.yaml?branch=master&logo=github&style=for-the-badge
 [GitHub Workflow URL]: https://github.com/QubitPi/fast-ui/actions/workflows/ci-cd.yaml
-[Node Version Badge]: https://img.shields.io/badge/NODE-18-339933?logo=Node.js&logoColor=white&labelColor=66cc33&style=for-the-badge
+[Node Version Badge]: https://img.shields.io/badge/NODE-22-339933?logo=Node.js&logoColor=white&labelColor=66cc33&style=for-the-badge
