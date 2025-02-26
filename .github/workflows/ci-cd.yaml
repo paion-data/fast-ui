@@ -175,10 +175,10 @@ jobs:
         node_version: [18, 20, 22]
     steps:
       - uses: actions/checkout@v3
-      - name: Set node version to ${{ env.NODE_VERSION }}
+      - name: Set node version to ${{ matrix.node_version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ matrix.node_version }}
       - name: Set up yarn
         run: |
           corepack enable
