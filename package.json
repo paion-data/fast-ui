@@ -9,7 +9,7 @@
     "node": ">=22.0.0"
   },
   "description": "React Template with common pre-defined components, such Redux and CI/CD",
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.6.0",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
