@@ -21,8 +21,6 @@ name: CI/CD
       - master
 
 env:
-  USER: QubitPi
-  EMAIL: jack20220723@gmail.com
   NODE_VERSION: 22
 
 jobs:
@@ -83,8 +81,6 @@ jobs:
   lighthouse:
     if: github.ref != 'refs/heads/master'
     needs: [yaml-lint, markdown-lint, linkChecker, code-style]
-    permissions:
-      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -236,22 +232,17 @@ jobs:
           yarn set version latest
       - name: Install nexusgraph dependencies so that TypeDoc process source files properly
         run: cd ../ && yarn install
-        env:
-          YARN_ENABLE_IMMUTABLE_INSTALLS: false
       - name: Install doc dependencies
         run: yarn install
-        env:
-          YARN_ENABLE_IMMUTABLE_INSTALLS: false
       - name: Build documentation
         run: yarn build
-      - name: Load CNAME
-        run: echo fastui.qubitpi.org > build/CNAME
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/build
+          cname: fastui.qubitpi.org
           enable_jekyll: false
-          user_name: ${{ env.USER }}
-          user_email: ${{ env.EMAIL }}
+          user_name: QubitPi
+          user_email: jack20220723@gmail.com
