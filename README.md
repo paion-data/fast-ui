@@ -17,7 +17,8 @@ to improve the velocity and quality of their teams' work.
 
 ## ✨ Features
 
-- Start of the art project manager [![Yarn 2](https://img.shields.io/badge/Yarn%202-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)](https://yarnpkg.com/)
+- Multi-language support [![i18n](https://img.shields.io/badge/i18next-26A69A?style=for-the-badge&logo=i18next&logoColor=white)](https://react.i18next.com/getting-started)
+- Start of the art project manager [![Yarn 4](https://img.shields.io/badge/Yarn%204-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)](https://yarnpkg.com/)
 - Fully automated CI/CD [![GH Action](https://img.shields.io/badge/GitHub%20Action-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/features/actions)
 
   - Code style checks

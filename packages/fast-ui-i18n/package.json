@@ -1,0 +1,7 @@
+{
+  "name": "fast-ui-i18n",
+  "dependencies": {
+    "i18next": "^24.2.2",
+    "react-i18next": "^15.4.1"
+  }
+}

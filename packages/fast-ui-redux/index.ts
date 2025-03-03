@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright 2025 Jiaqi Liu. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 export { setMyState1, setMyState2, selectMyState1, selectMyState2 } from "./src/appSlice";
 
 export { useAppSelector, useAppDispatch } from "./src/hooks";

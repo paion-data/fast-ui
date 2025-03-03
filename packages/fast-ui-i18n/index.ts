@@ -13,19 +13,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-declare module "*.svg" {
-  const content: string;
-  export default content;
-}
-
-declare module "*.png" {
-  const content: string;
-  export default content;
-}
-
-declare module "*.css";
-declare module "*.less";
-
-interface Window {
-  Cypress?: unknown;
-}
+export { default as i18n } from "./src/i18n";

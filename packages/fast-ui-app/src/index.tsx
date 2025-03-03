@@ -16,6 +16,7 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import { i18n } from "fast-ui-i18n";
 
 import * as Sentry from "@sentry/react";
 import { Provider } from "react-redux";
@@ -30,6 +31,8 @@ if (process.env.NODE_ENV === "production") {
     replaysOnErrorSampleRate: 1.0,
   });
 }
+
+void i18n; // force a i18n load
 
 /* eslint-disable  @typescript-eslint/non-nullable-type-assertion-style */
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);

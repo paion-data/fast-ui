@@ -13,19 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-declare module "*.svg" {
-  const content: string;
-  export default content;
-}
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
-declare module "*.png" {
-  const content: string;
-  export default content;
-}
+export default i18n.use(initReactI18next).init({
+  resources: {
+    en: {
+      translation: {
+        Home: "Home",
+        Projects: "Projects",
+        Contact: "Contact",
+      },
+    },
+    zh: {
+      translation: {
+        Home: "主页",
+        Projects: "游学项目",
+        Contact: "联系我们",
+      },
+    },
+  },
+  lng: "en",
+  fallbackLng: "en",
 
-declare module "*.css";
-declare module "*.less";
-
-interface Window {
-  Cypress?: unknown;
-}
+  interpolation: {
+    escapeValue: false,
+  },
+});
