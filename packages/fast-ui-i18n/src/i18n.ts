@@ -16,19 +16,17 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-export default i18n.use(initReactI18next).init({
+void i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
-        Home: "Home",
-        Projects: "Projects",
+        "Thank you for choosing FastUI!": "Thank you for choosing FastUI!",
         Contact: "Contact",
       },
     },
     zh: {
       translation: {
-        Home: "主页",
-        Projects: "游学项目",
+        "Thank you for choosing FastUI!": "感谢您使用 FastUI!",
         Contact: "联系我们",
       },
     },
@@ -40,3 +38,5 @@ export default i18n.use(initReactI18next).init({
     escapeValue: false,
   },
 });
+
+export default i18n;
