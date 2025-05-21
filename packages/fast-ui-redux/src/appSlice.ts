@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+
 import { type RootState } from "./store";
 
 interface AppState {

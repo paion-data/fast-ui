@@ -13,14 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import { i18n } from "fast-ui-i18n";
-
 import * as Sentry from "@sentry/react";
-import { Provider } from "react-redux";
+
+import "./index.css";
+
+import { i18n } from "fast-ui-i18n";
 import { store } from "fast-ui-redux";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+
+import App from "./App";
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
