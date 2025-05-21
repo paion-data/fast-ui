@@ -23,6 +23,11 @@ declare module "*.png" {
   export default content;
 }
 
+declare module "*.gif" {
+  const value: string;
+  export default value;
+}
+
 declare module "*.css";
 declare module "*.less";
 
